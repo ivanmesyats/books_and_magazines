@@ -38,8 +38,7 @@ public class Main {
             Collections.sort(users, ((o1, o2) -> o1.age - o2.age));
 
 
-            users.forEach(user -> {
-
+            users.stream().forEach(user -> {
                 midAge.set(midAge.get() + user.age);
                 if (user.age < 18) {
                     under18.getAndIncrement();
@@ -48,24 +47,8 @@ public class Main {
 
                     numberOfUsersStartsFromAorS.getAndIncrement();
                 }
-            } );
+            });
 
-//            for (int i = 0; i < users.size(); i++) {
-//
-//                User curUser = users.get(i);
-//
-//                midAge = midAge + curUser.age;
-//
-//                if (curUser.age < 18) {
-//
-//                    under18++;
-//                }
-//
-//                if (curUser.secondName.toUpperCase().startsWith("S") || curUser.secondName.toUpperCase().startsWith("A")) {
-//
-//                    numberOfUsersStartsFromAorS++;
-//                }
-//            }
             users.forEach(System.out::println);
             System.out.println("Mid age of users is : " + midAge.get() / users.size() + " Number of users younger then 18 are: " + under18 + " Number of users name starts from A or S :" + numberOfUsersStartsFromAorS);
 
