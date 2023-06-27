@@ -3,6 +3,8 @@ package org.example;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +25,9 @@ public class Main {
         AtomicInteger numberOfUsersStartsFromAorS = new AtomicInteger();
         AtomicInteger under18 = new AtomicInteger();
 
+
+
+
         for (int i = 0; i < 10; i++) {
 
             User user = new User();
@@ -34,11 +39,13 @@ public class Main {
             users.add(user);
 
         }
-            //Collections.sort(users, ((o1, o2) -> o1.firstName.compareTo(o2.firstName)));
+
+
+
+//            Collections.sort(users, ((o1, o2) -> o1.firstName.compareTo(o2.firstName)));
             Collections.sort(users, ((o1, o2) -> o1.age - o2.age));
 
-
-            users.stream().forEach(user -> {
+        users.stream().forEach(user -> {
                 midAge.set(midAge.get() + user.age);
                 if (user.age < 18) {
                     under18.getAndIncrement();

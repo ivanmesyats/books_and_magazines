@@ -14,4 +14,8 @@ public class User implements Printable {
     public void print() {
         System.out.println(firstName +" " + secondName + age);
     }
+
+    public int getAge (){
+        return this.age;
+    }
 }
