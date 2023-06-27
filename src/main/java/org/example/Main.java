@@ -21,13 +21,6 @@ public class Main {
 
         ArrayList<User> users = new ArrayList();
 
-        AtomicInteger midAge = new AtomicInteger();
-        AtomicInteger numberOfUsersStartsFromAorS = new AtomicInteger();
-        AtomicInteger under18 = new AtomicInteger();
-
-
-
-
         for (int i = 0; i < 10; i++) {
 
             User user = new User();
@@ -42,24 +35,26 @@ public class Main {
 
 
 
-//            Collections.sort(users, ((o1, o2) -> o1.firstName.compareTo(o2.firstName)));
-            Collections.sort(users, ((o1, o2) -> o1.age - o2.age));
+        List<User> sortBy = users.stream()
+                .sorted(Comparator.comparing(User::getAge))
+//                .sorted(Comparator.comparing(User::getFirstName))
+                .collect(Collectors.toList());
 
-        users.stream().forEach(user -> {
-                midAge.set(midAge.get() + user.age);
-                if (user.age < 18) {
-                    under18.getAndIncrement();
-                }
-                if (user.secondName.toUpperCase().startsWith("S") || user.secondName.toUpperCase().startsWith("A")) {
+        sortBy.forEach(System.out::println);
 
-                    numberOfUsersStartsFromAorS.getAndIncrement();
-                }
-            });
+        boolean lessThen18 = users.stream()
+                .anyMatch(user -> user.getAge() < 18);
 
-            users.forEach(System.out::println);
-            System.out.println("Mid age of users is : " + midAge.get() / users.size() + " Number of users younger then 18 are: " + under18 + " Number of users name starts from A or S :" + numberOfUsersStartsFromAorS);
 
-            users.forEach(user -> user.print());
+        boolean sOrAinTheName = users.stream()
+                .anyMatch(user -> user.getSecondName().toUpperCase().startsWith("S") || user.getSecondName().toUpperCase().startsWith("A") );
+
+
+        Integer midAge = users.stream().mapToInt(age -> age.getAge())
+                    .sum();
+
+        System.out.println("Mid age of users is : " + midAge / users.size() + " Users younger then 18 are: " + lessThen18 + " Users name starts from A or S :" + sOrAinTheName);
+
 
         }
     }

@@ -18,4 +18,11 @@ public class User implements Printable {
     public int getAge (){
         return this.age;
     }
+
+    public String getFirstName (){
+        return this.firstName;
+    }
+    public String getSecondName (){
+        return this.secondName;
+    }
 }
