@@ -1,9 +1,11 @@
 package org.example;
+import java.util.stream.Stream;
 
 public class User implements Printable {
 
-    String firstName, secondName;
-    Integer age;
+    public String  firstName, secondName;
+    public Integer age;
+
 
     @Override
     public String toString() {
@@ -25,4 +27,5 @@ public class User implements Printable {
     public String getSecondName (){
         return this.secondName;
     }
+
 }

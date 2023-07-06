@@ -2,9 +2,7 @@ package org.example;
 
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -35,27 +33,47 @@ public class Main {
 
 
 
-        List<User> sortBy = users.stream()
-                .sorted(Comparator.comparing(User::getAge))
-//                .sorted(Comparator.comparing(User::getFirstName))
-                .collect(Collectors.toList());
-
-        sortBy.forEach(System.out::println);
-
-        boolean lessThen18 = users.stream()
-                .anyMatch(user -> user.getAge() < 18);
 
 
-        boolean sOrAinTheName = users.stream()
-                .anyMatch(user -> user.getSecondName().toUpperCase().startsWith("S") || user.getSecondName().toUpperCase().startsWith("A") );
 
+//        System.out.println(sortBy(users));
 
-        Integer midAge = users.stream().mapToInt(age -> age.getAge())
-                    .sum();
+        System.out.println(UsrMngt.sortBy(users));
 
-        System.out.println("Mid age of users is : " + midAge / users.size() + " Users younger then 18 are: " + lessThen18 + " Users name starts from A or S :" + sOrAinTheName);
+        System.out.println(UsrMngt.lessThen18(users));
+
+        System.out.println(UsrMngt.midAge(users));
+
+        System.out.println(UsrMngt.sOrAinTheName(users));
+
+//        System.out.println("Mid age of users is : " + midAge / users.size() + " Users younger then 18 are: " + lessThen18 + " Users name starts from A or S :" + sOrAinTheName);
 
 
         }
-    }
+//        public static Boolean lessThen18 (ArrayList<User> users){
+//                return users.stream()
+//                .anyMatch(user -> user.getAge() < 18);
+//    }
+//
+//        public static long midAge (ArrayList<User> users){
+//             return (users.stream()
+//                     .mapToLong(age -> age.getAge())
+//                    .sum())/ users.size();
+//        }
+//
+//    public static Boolean sOrAinTheName (ArrayList<User> users){
+//        return users.stream()
+//                .anyMatch(user -> user.getSecondName().toUpperCase().startsWith("S") || user.getSecondName().toUpperCase().startsWith("A"));
+//
+//    }
+//
+//    public static List<User> sortBy (ArrayList<User> users){
+//        return users.stream()
+//                .sorted(Comparator.comparing(User::getAge))
+////                .sorted(Comparator.comparing(User::getFirstName))
+//                .collect(Collectors.toList());
+//    }
+
+
+}
 
